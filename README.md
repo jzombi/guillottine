@@ -8,7 +8,7 @@ Guillottine is a simple [guillottine problem](https://en.wikipedia.org/wiki/Guil
 * Save the picture of the solution
 * SimpleSolver
   * More or less based on: [url](http://www.amzi.com/articles/papercutter.htm)
-    (however our current solver couldn't find the layout presented in Figure 4.)
+    (however the current solver couldn't find the layout presented in Figure 4.)
   * With some basic heuristics
   * Supports rotatable pieces
   * Supports multiple spaces (sheets)

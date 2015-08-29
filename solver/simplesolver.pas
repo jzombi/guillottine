@@ -94,7 +94,7 @@ implementation
 constructor TSSBox.Init(name: string; width, height: real; rotatable: boolean; rotated: boolean);
 begin
     TBox.Init(name, width, height, rotatable, rotated);
-    Writeln(toString, edge);
+    //Writeln(toString, edge);
     sortvalue := -edge;
 end;
 
@@ -250,18 +250,18 @@ begin
     last_piece_index := -1;
     repeat
         Inc(FStep);
-        Writeln('step: ', solution.step);
+//        Writeln('step: ', solution.step);
 //        Writeln('placed: ', state.placed.toString);
 //        Writeln('pieces: ', state.boxes.toString);
 //        Writeln('spaces: ', state.spaces.toString);
 //        Writeln('index: ', state.indexes.toString);
         if state.boxes.current.size = 0 then begin
             // solution! append to solution
-            Writeln('solution');
-            Writeln('placed: ', state.placed.toString);
+            //Writeln('solution');
+            //Writeln('placed: ', state.placed.toString);
             SetSolution;
             break;
-            Writeln(state.boxes.current.size);
+            //Writeln(state.boxes.current.size);
             state.undo();
             leaf := False;
             if state.indexes.current.size > 0 then begin
