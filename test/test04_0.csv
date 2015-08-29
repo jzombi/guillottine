@@ -1,0 +1,7 @@
+Type,Name,X,Y,Width,Height,Rotatable,Count
+space,base,10,20,120,120,,1
+piece,R1,,,30,50,false,2
+piece,R2,,,120,30,false,1
+piece,R3,,,20,40,false,1
+piece,R4,,,40,40,false,2
+piece,R5,,,30,40,false,1

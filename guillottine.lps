@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="37">
+      <Unit0>
+        <Filename Value="guillottine.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="14" Y="22"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="setupunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SetupForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="SetupUnit"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="10"/>
+        <CursorPos X="49" Y="16"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="solver/simplesolver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="199"/>
+        <CursorPos X="89" Y="213"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="solver/rectangle.pas"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="162"/>
+        <CursorPos X="43" Y="176"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="solver/solver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="6" Y="11"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="solver/sortedarray.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="16" Y="4"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="solver/stack.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="6"/>
+        <CursorPos X="38" Y="30"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="solver/undoarray.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="47"/>
+        <CursorPos X="30" Y="62"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="solver/glist.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="14" Y="12"/>
+        <UsageCount Value="45"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="19"/>
+        <CursorPos X="30" Y="39"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="solutionunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="SolutionForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="263"/>
+        <CursorPos X="34" Y="278"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="unit1.pas"/>
+        <ComponentName Value="SetupForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15"/>
+        <UsageCount Value="25"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="unit2.pas"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit2"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="14"/>
+        <UsageCount Value="20"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="solver/tests/test_rectangle.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="2"/>
+        <UsageCount Value="17"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="solver/tests/test_simplesolver.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="17"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="solver/tests/test_sortedarray.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="17"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="solver/tests/test_undoarray.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="17"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="solver/test.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="17"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../../../../install/application/fpc/svn/fpc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="280"/>
+        <CursorPos X="3" Y="298"/>
+        <UsageCount Value="7"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="../../../../install/application/fpc/svn/fpc/rtl/objpas/fgl.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="297"/>
+        <CursorPos X="17" Y="316"/>
+        <UsageCount Value="7"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/grids.pas"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1632"/>
+        <CursorPos X="3" Y="1648"/>
+        <UsageCount Value="8"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="../../../../install/fpc/svn/fpc/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="295"/>
+        <CursorPos X="13" Y="311"/>
+        <UsageCount Value="8"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="../../../../install/fpc/svn/fpc/rtl/inc/objpash.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="185"/>
+        <CursorPos X="22" Y="199"/>
+        <UsageCount Value="9"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="../../../../install/fpc/svn/fpc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
+        <CursorPos X="4" Y="28"/>
+        <UsageCount Value="9"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/include/control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2099"/>
+        <CursorPos Y="2113"/>
+        <UsageCount Value="9"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/include/buttoncontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos Y="21"/>
+        <UsageCount Value="9"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/include/buttons.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="155"/>
+        <CursorPos Y="170"/>
+        <UsageCount Value="9"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5360"/>
+        <CursorPos Y="5374"/>
+        <UsageCount Value="9"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="105"/>
+        <CursorPos Y="123"/>
+        <UsageCount Value="9"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <UnitName Value="Gtk2WSStdCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2414"/>
+        <CursorPos Y="2429"/>
+        <UsageCount Value="9"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/interfaces/gtk2/gtk2widgetset.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2389"/>
+        <CursorPos Y="2404"/>
+        <UsageCount Value="9"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1197"/>
+        <CursorPos X="15" Y="1209"/>
+        <UsageCount Value="9"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/graphtype.pp"/>
+        <UnitName Value="GraphType"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="48"/>
+        <CursorPos X="3" Y="33"/>
+        <UsageCount Value="9"/>
+      </Unit32>
+      <Unit33>
+        <Filename Value="../../../../install/fpc/svn/fpc/rtl/objpas/types.pp"/>
+        <UnitName Value="Types"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="75"/>
+        <CursorPos X="3" Y="81"/>
+        <UsageCount Value="9"/>
+      </Unit33>
+      <Unit34>
+        <Filename Value="../../../../install/lazarus/svn/lazarus/lcl/dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="118"/>
+        <CursorPos X="14" Y="132"/>
+        <UsageCount Value="9"/>
+      </Unit34>
+      <Unit35>
+        <Filename Value="doc/setupunit.xml"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit35>
+      <Unit36>
+        <Filename Value="doc/mainunit.xml"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit36>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="321" TopLine="210"/>
+      </Position1>
+      <Position2>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="321" TopLine="307"/>
+      </Position2>
+      <Position3>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="252" Column="30" TopLine="240"/>
+      </Position3>
+      <Position4>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="321" Column="36" TopLine="298"/>
+      </Position4>
+      <Position5>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="210" Column="46" TopLine="184"/>
+      </Position5>
+      <Position6>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="261" Column="44" TopLine="226"/>
+      </Position6>
+      <Position7>
+        <Filename Value="setupunit.pas"/>
+        <Caret Line="81" Column="9" TopLine="51"/>
+      </Position7>
+      <Position8>
+        <Filename Value="setupunit.pas"/>
+        <Caret Line="88" Column="9" TopLine="53"/>
+      </Position8>
+      <Position9>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="279" Column="14" TopLine="238"/>
+      </Position9>
+      <Position10>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="208" Column="25" TopLine="181"/>
+      </Position10>
+      <Position11>
+        <Filename Value="solver/stack.pas"/>
+        <Caret Line="30" TopLine="6"/>
+      </Position11>
+      <Position12>
+        <Filename Value="solver/undoarray.pas"/>
+        <Caret Line="62" TopLine="47"/>
+      </Position12>
+      <Position13>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="321" Column="45" TopLine="307"/>
+      </Position13>
+      <Position14>
+        <Filename Value="solver/stack.pas"/>
+        <Caret Line="30" Column="12" TopLine="6"/>
+      </Position14>
+      <Position15>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="209" Column="92" TopLine="196"/>
+      </Position15>
+      <Position16>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="279" Column="14" TopLine="238"/>
+      </Position16>
+      <Position17>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="281" Column="14" TopLine="253"/>
+      </Position17>
+      <Position18>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="288" Column="3" TopLine="280"/>
+      </Position18>
+      <Position19>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="39" Column="44"/>
+      </Position19>
+      <Position20>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="41" Column="44"/>
+      </Position20>
+      <Position21>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="250" Column="46" TopLine="201"/>
+      </Position21>
+      <Position22>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="257" Column="46" TopLine="205"/>
+      </Position22>
+      <Position23>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="215" Column="32" TopLine="195"/>
+      </Position23>
+      <Position24>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="343" Column="40" TopLine="303"/>
+      </Position24>
+      <Position25>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="20" Column="65" TopLine="4"/>
+      </Position25>
+      <Position26>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="353" Column="14" TopLine="310"/>
+      </Position26>
+      <Position27>
+        <Filename Value="solutionunit.pas"/>
+        <Caret Line="290" Column="46" TopLine="264"/>
+      </Position27>
+      <Position28>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="319" Column="35" TopLine="306"/>
+      </Position28>
+      <Position29>
+        <Filename Value="solver/simplesolver.pas"/>
+        <Caret Line="212" Column="58" TopLine="197"/>
+      </Position29>
+      <Position30>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="38" Column="30" TopLine="19"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

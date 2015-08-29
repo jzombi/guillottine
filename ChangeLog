@@ -1,0 +1,8 @@
+2015-08-29 Matyas Jani
+
+  * Initial release
+  * SimpleSolver guillottine solver with basic heuristics
+    supports: rotatable pieces, multiple spaces (sheets)
+  * GUI program with threaded execution of the solver
+
+
