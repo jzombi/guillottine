@@ -22,3 +22,7 @@ Guillottine is a simple [guillottine problem](https://en.wikipedia.org/wiki/Guil
   * E.g. for solvers with multicore CPU support, etc.
   * Solvers as separate binaries / dlls?
 * Translations
+
+## License
+
+MIT License
