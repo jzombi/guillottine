@@ -1,0 +1,36 @@
+##################
+# Compiled source
+##################
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.a
+*.la
+lib/
+
+##############
+# Executables
+##############
+
+guillottine
+guillottine.exe
+
+################
+# Documentation
+################
+
+doc/html/*
+doc/pdf/*
+doc/pdf/*.pdf
+
+
+#####################
+# Backup files, logs
+#####################
+
+*.bak
+*.log
