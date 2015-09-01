@@ -2,14 +2,14 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="9"/>
-    <BuildModes Active="Default"/>
+    <BuildModes Active="Release"/>
     <Units Count="37">
       <Unit0>
         <Filename Value="guillottine.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="9"/>
         <CursorPos Y="20"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,20 +20,19 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SetupUnit"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="10"/>
+        <TopLine Value="78"/>
         <CursorPos X="49" Y="16"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="solver/simplesolver.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="82"/>
-        <CursorPos X="14" Y="97"/>
-        <UsageCount Value="47"/>
+        <TopLine Value="240"/>
+        <CursorPos X="32" Y="273"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -41,7 +40,7 @@
         <IsPartOfProject Value="True"/>
         <TopLine Value="162"/>
         <CursorPos X="43" Y="176"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -49,7 +48,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="6" Y="11"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -57,7 +56,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="10"/>
         <CursorPos X="16" Y="4"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -66,7 +65,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="6"/>
         <CursorPos X="38" Y="30"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -75,7 +74,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="47"/>
         <CursorPos X="30" Y="62"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -83,7 +82,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="5"/>
         <CursorPos X="14" Y="12"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -95,7 +94,7 @@
         <UnitName Value="MainUnit"/>
         <EditorIndex Value="2"/>
         <CursorPos X="23" Y="6"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -105,10 +104,11 @@
         <ComponentName Value="SolutionForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="263"/>
-        <CursorPos X="34" Y="278"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="347"/>
+        <CursorPos Y="371"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit10>

@@ -8,7 +8,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  Buttons, StdCtrls, Grids, SetupUnit, solver, simplesolver, rectangle;
+  Buttons, StdCtrls, Grids, math, SetupUnit, solver, simplesolver, rectangle;
 
 type
 
@@ -18,6 +18,7 @@ type
       offsetX, offsetY, scaleX, scaleY : real;
       constructor Init;
       procedure AutoFit(solution: TSolution; width, height: real);
+      procedure CenterStretchKeepAspect(tx1, ty1, tx2, ty2, sx1, sy1, sx2, sy2 : real);
       function transform(rectangle: TRectangle):TRectangle;
   end;
 
@@ -333,10 +334,28 @@ begin
      scaleY := 1;
 end;
 
+procedure TTransformation.CenterStretchKeepAspect(tx1, ty1, tx2, ty2 : real;
+                                                  sx1, sy1, sx2, sy2 : real);
+begin
+     {Assume that x2>x1, y2>y1}
+     if (tx2-tx1)*(sy2-sy1) > (ty2-ty1)*(sx2-sx1) then begin
+         scaleY := (ty2-ty1)/(sy2-sy1);
+         offsetY := ty1/scaleY-sy1;
+         scaleX := scaleY;
+         offsetX := (tx1 + 0.5*(tx2-tx1))/scaleX - (sx1 + 0.5*(sx2-sx1));
+     end else begin
+         scaleX := (tx2-tx1)/(sx2-sx1);
+         offsetX := tx1/scaleX-sx1;
+         scaleY := scaleX;
+         offsetY := (ty1 + 0.5*(ty2-ty1))/scaleY - (sy1 + 0.5*(sy2-sy1));
+     end;
+end;
+
 procedure TTransformation.AutoFit(solution: TSolution; width, height: real);
 var space : TSpace;
     minx, miny, maxx, maxy : real;
     ii : integer;
+    margin : real;
 begin
      minx := 0;
      miny := 0;
@@ -351,12 +370,11 @@ begin
          if (ii = 0) or (space.left_ + space.width_ > maxx) then
             maxx := space.left_ + space.width_;
          if (ii = 0) or (space.top_ + space.height_ > maxy) then
-           maxy := space.top_ + space.height_;
+            maxy := space.top_ + space.height_;
      end;
-     offsetX := -minx;
-     offsetY := -minY;
-     scaleX := width / (maxx + offsetX);
-     scaleY := height / (maxy + offsetY);
+     margin := 0.025*min(width, height);
+     CenterStretchKeepAspect(margin, margin, width-margin, height-margin,
+                             minx, miny, maxx, maxy);
 end;
 
 function TTransformation.transform(rectangle: TRectangle):TRectangle;
