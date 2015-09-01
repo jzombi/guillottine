@@ -23,9 +23,9 @@ guillottine.exe
 # Documentation
 ################
 
-doc/html/*
-doc/pdf/*
-doc/pdf/*.pdf
+src/doc/html/*
+src/doc/pdf/*
+src/doc/pdf/*.pdf
 
 
 #####################

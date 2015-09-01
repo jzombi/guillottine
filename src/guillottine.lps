@@ -92,6 +92,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <CursorPos X="23" Y="6"/>
         <UsageCount Value="41"/>
@@ -104,7 +105,6 @@
         <ComponentName Value="SolutionForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <TopLine Value="347"/>
         <CursorPos Y="371"/>
