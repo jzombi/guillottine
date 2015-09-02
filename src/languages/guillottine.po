@@ -1,0 +1,75 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tmainform.caption
+msgid "Simple Guillottine Solver"
+msgstr ""
+
+#: tmainform.quitbutton.caption
+msgid "Quit"
+msgstr ""
+
+#: tmainform.setupbutton.caption
+msgctxt "tmainform.setupbutton.caption"
+msgid "Setup"
+msgstr ""
+
+#: tmainform.solverbutton.caption
+msgid "Solver"
+msgstr ""
+
+#: tsetupform.addpiecebutton.caption
+msgid "Add"
+msgstr ""
+
+#: tsetupform.caption
+msgctxt "TSETUPFORM.CAPTION"
+msgid "Setup"
+msgstr ""
+
+#: tsetupform.cutwidthedit.text
+msgid "0"
+msgstr ""
+
+#: tsetupform.cutwidthlabel.caption
+msgid "Cut width:"
+msgstr ""
+
+#: tsetupform.loadpiecelistbutton.caption
+msgid "Load"
+msgstr ""
+
+#: tsetupform.pieceslabel.caption
+msgid "Pieces"
+msgstr ""
+
+#: tsetupform.removepiecebutton.caption
+msgid "Remove"
+msgstr ""
+
+#: tsetupform.savepiecelistbutton.caption
+msgctxt "tsetupform.savepiecelistbutton.caption"
+msgid "Save"
+msgstr ""
+
+#: tsolutionform.caption
+msgid "Solution"
+msgstr ""
+
+#: tsolutionform.label1.caption
+msgid "Step:"
+msgstr ""
+
+#: tsolutionform.savedialog1.title
+msgid "Save solution image as..."
+msgstr ""
+
+#: tsolutionform.saveimagebutton.caption
+msgctxt "TSOLUTIONFORM.SAVEIMAGEBUTTON.CAPTION"
+msgid "Save"
+msgstr ""
+
+#: tsolutionform.solverstartstopbutton.caption
+msgid "Start"
+msgstr ""
+

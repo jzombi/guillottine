@@ -88,7 +88,9 @@ var index : integer;
 begin
     if size = Length(data) then raise ESortedArray.Create('Can not insert element into a full array.');
     index := BisectLeft(elem);
-    Move(data[index], data[index + 1], (size-index) * SizeOf(T));
+    if index < size then begin
+        Move(data[index], data[index + 1], (size-index) * SizeOf(T));
+    end;
     data[index] := elem;
     Inc(size);
 end;
@@ -105,7 +107,9 @@ procedure TSortedArray.Insert(elem: T; index: integer);
 begin
     if size = Length(data) then raise ESortedArray.Create('Can not insert element into a full array.');
     if (index < 0) or (index > size) then raise ESortedArray.Create('Index out of range.');
-    Move(data[index], data[index + 1], (size-index) * SizeOf(T));
+    if index < size then begin
+        Move(data[index], data[index + 1], (size-index) * SizeOf(T));
+    end;
     data[index] := elem;
     Inc(size);
 end;
@@ -114,7 +118,9 @@ end;
 procedure TSortedArray.Delete(index : integer);
 begin
     if (index < 0) or (index >= size) then raise ESortedArray.Create('Index out of range');
-    Move(data[index + 1], data[index], (size-index-1) * SizeOf(T));
+    if index < size-1 then begin
+        Move(data[index + 1], data[index], (size-index-1) * SizeOf(T));
+    end;
     Dec(size);
 end;
 
