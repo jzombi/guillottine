@@ -30,15 +30,15 @@ type
      private
          Solver : TSimpleSolver;
          FSolution : TSolution;
-         SpaceList: TSpaceList;
+         SpaceList: TSheetList;
          PieceList: TPieceList;
-         CutWidth: real;
+         CutWidth: integer;
          FStopped: boolean;
      public
          procedure stop;
          procedure Execute; override;
          property Solution: TSolution read FSolution;
-         constructor Create(ASpaceList: TSpaceList; APieceList: TPieceList; ACutWidth: real);
+         constructor Create(ASpaceList: TSheetList; APieceList: TPieceList; ACutWidth: integer);
          property Stopped: boolean read FStopped;
          //destructor Destroy; override;
   end;
@@ -48,14 +48,14 @@ type
   { TSolutionForm }
 
   TSolutionForm = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
+    SolverStartStopButton: TButton;
+    SaveImageButton: TButton;
     Image1: TImage;
     Label1: TLabel;
     SaveDialog1: TSaveDialog;
     Timer1: TTimer;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure SolverStartStopButtonClick(Sender: TObject);
+    procedure SaveImageButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure SolverTerminated(Sender: TObject);
@@ -79,12 +79,12 @@ var SolverThread: TSolverThread;
 
 { TSolverThread }
 
-constructor TSolverThread.Create(ASpaceList: TSpaceList; APieceList: TPieceList; ACutWidth: real);
+constructor TSolverThread.Create(ASpaceList: TSheetList; APieceList: TPieceList; ACutWidth: integer);
 begin
     CutWidth := ACutWidth;
     PieceList := APieceList;
     SpaceList := ASpaceList;
-    FSolution.valid := false;
+    FSolution.Valid := false;
     solver := nil;
     inherited Create(false);
 end;
@@ -126,10 +126,10 @@ begin
      end;
 end;
 
-function GetSpaceList(input: TStringGrid):TSpaceList;
+function GetSpaceList(input: TStringGrid):TSheetList;
 var ii, kk : integer;
     count : integer;
-    space : TSpace;
+    sheet : TSheet;
     name, namecount : string;
     xx, yy, width, height : integer;
     elemcount : integer;
@@ -147,8 +147,8 @@ begin
              for kk:=1 to elemcount do begin
                  namecount := name;
                  if elemcount > 1 then namecount := namecount + '_' + IntToStr(kk);
-                 space.Init(namecount, xx, yy, width, height);
-                 GetSpaceList.Append(space);
+                 sheet.Init(namecount, xx, yy, width, height);
+                 GetSpaceList.Append(sheet);
              end;
          end;
      end;
@@ -157,7 +157,7 @@ end;
 function GetPieceList(input: TStringGrid):TPieceList;
 var ii, kk : integer;
     count : integer;
-    box : TBox;
+    piece : TPiece;
     name, namecount : string;
     width, height : integer;
     rotatable : boolean;
@@ -177,18 +177,18 @@ begin
              for kk:=1 to elemcount do begin
                  namecount := name;
                  if elemcount > 1 then namecount := namecount + '_' + IntToStr(kk);
-                 box.Init(namecount, width, height, rotatable, false);
-                 GetPieceList.Append(box);
+                 piece.Init(namecount, width, height, 0, rotatable, false);
+                 GetPieceList.Append(piece);
              end;
          end;
      end;
 end;
 
 
-procedure TSolutionForm.Button1Click(Sender: TObject);
+procedure TSolutionForm.SolverStartStopButtonClick(Sender: TObject);
 var piecelist : TPieceList;
-    spacelist : TSpaceList;
-    cutwidth : real;
+    spacelist : TSheetList;
+    cutwidth : integer;
 begin
      if Assigned(SolverThread) and SolverThread.Stopped then begin
          SolverThread.stop;
@@ -199,20 +199,20 @@ begin
          SolverThread.stop;
          SolverThread.WaitFor;
          FreeAndNil(SolverThread);
-         Button1.Caption:='Start';
+         SolverStartStopButton.Caption:='Start';
      end else begin
          piecelist := GetPieceList(SetupForm.PiecesGrid);
          spacelist := GetSpaceList(SetupForm.PiecesGrid);
-         cutwidth := StrToFloatDef(SetupForm.CutWidthEdit.Text, 0);
+         cutwidth := StrToIntDef(SetupForm.CutWidthEdit.Text, 0);
          SolverThread := TSolverThread.Create(spacelist, piecelist, cutwidth);
          SolverThread.OnTerminate := @self.SolverTerminated;
          SolverThread.Start;
          Label1.Caption := 'Step: 0';
-         Button1.Caption:='Stop';
+         SolverStartStopButton.Caption:='Stop';
      end;
 end;
 
-procedure TSolutionForm.Button2Click(Sender: TObject);
+procedure TSolutionForm.SaveImageButtonClick(Sender: TObject);
 begin
      If SaveDialog1.Execute then begin
           Image1.Picture.SaveToFile(SaveDialog1.FileName);
@@ -238,7 +238,7 @@ end;
 
 procedure TSolutionForm.SolverTerminated(Sender: TObject);
 begin
-    Button1.Caption:='Start';
+    SolverStartStopButton.Caption:='Start';
     ShowSolution(SolverThread.Solution);
     UpdateStep;
 end;
@@ -260,35 +260,35 @@ end;
 function GetTRect(rectangle: TRectangle; transformation: TTransformation):TRect;
 begin
     rectangle := transformation.transform(rectangle);
-    GetTRect.Left:=Round(rectangle.left_);
-    GetTRect.Top:=Round(rectangle.top_);
-    GetTRect.Bottom:=Round(rectangle.top_+rectangle.height_);
-    GetTRect.Right:=Round(rectangle.left_+rectangle.width_);
+    GetTRect.Left:=Round(rectangle.Left);
+    GetTRect.Top:=Round(rectangle.Top);
+    GetTRect.Bottom:=Round(rectangle.Top+rectangle.Height);
+    GetTRect.Right:=Round(rectangle.Left+rectangle.Width);
 end;
 
 procedure TSolutionForm.ShowSolution(Solution: TSolution);
 var ii : integer;
     cut : TCut;
-    space : TSpace;
-    placedbox : TPlacedBox;
+    space : TSheet;
+    placedbox : TPlacedPiece;
     rect : TRect;
     transformation : TTransformation;
     tw, th : integer;
     placedname : string;
 begin
-     if Solution.valid then begin
-         Image1.Canvas.Brush.Color:=clWhite;
-         Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
+     Image1.Canvas.Brush.Color:=clWhite;
+     Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
+     if Solution.Valid then begin
          transformation.Init;
          transformation.AutoFit(Solution, Image1.Canvas.Width, Image1.Canvas.Height);
          Image1.Canvas.Pen.Color:=clBlack;
-         for ii:=0 to Solution.origspacelist.size-1 do begin
-             space:=Solution.origspacelist.data[ii];
+         for ii:=0 to Solution.OrigSheetList.size-1 do begin
+             space:=Solution.OrigSheetList.data[ii];
              rect := GetTRect(space, transformation);
              Image1.Canvas.Frame(rect);
          end;
-         for ii:=0 to Solution.placedlist.size-1 do begin
-             placedbox:=Solution.placedlist.data[ii];
+         for ii:=0 to Solution.PlacedList.size-1 do begin
+             placedbox:=Solution.PlacedList.data[ii];
              rect := GetTRect(placedbox, transformation);
              Image1.Canvas.Frame(rect);
              Image1.Canvas.Brush.Color:=clGray;
@@ -297,20 +297,20 @@ begin
              Dec(rect.Right);
              Dec(Rect.Bottom);
              Image1.Canvas.FillRect(rect);
-             placedname := placedbox.name_;
-             if placedbox.rotated_ then
+             placedname := placedbox.Name;
+             if placedbox.Rotated then
                 placedname := placedname + '*';
-             th := Image1.Canvas.TextHeight(placedbox.name_);
-             tw := Image1.Canvas.TextWidth(placedbox.name_);
+             th := Image1.Canvas.TextHeight(placedbox.Name);
+             tw := Image1.Canvas.TextWidth(placedbox.Name);
              Image1.Canvas.TextOut((rect.Right - rect.Left - tw) div 2 + rect.Left,
                                    (rect.Bottom - rect.Top - th) div 2 + rect.Top,
                                    placedname);
          end;
          Image1.Canvas.Pen.Color:=clRed;
-         for ii:=0 to Solution.cutlist.size-1 do begin
-             cut:=Solution.cutlist.data[ii];
+         for ii:=0 to Solution.CutList.size-1 do begin
+             cut:=Solution.CutList.data[ii];
              rect := GetTRect(cut, transformation);
-             if cut.direction_ = horizontal then begin
+             if cut.Direction = dirHorizontal then begin
                  rect.Top := Round(rect.Top+(rect.Bottom-rect.Top)/2);
                  rect.Bottom := rect.Top;
              end else begin
@@ -352,7 +352,7 @@ begin
 end;
 
 procedure TTransformation.AutoFit(solution: TSolution; width, height: real);
-var space : TSpace;
+var sheet : TSheet;
     minx, miny, maxx, maxy : real;
     ii : integer;
     margin : real;
@@ -361,16 +361,16 @@ begin
      miny := 0;
      maxx := width;
      maxy := height;
-     for ii:=0 to Solution.origspacelist.size-1 do begin
-         space:=Solution.origspacelist.data[ii];
-         if (ii = 0) or (space.left_ < minx) then
-            minx := space.left_;
-         if (ii = 0) or (space.top_ < miny) then
-            miny := space.top_;
-         if (ii = 0) or (space.left_ + space.width_ > maxx) then
-            maxx := space.left_ + space.width_;
-         if (ii = 0) or (space.top_ + space.height_ > maxy) then
-            maxy := space.top_ + space.height_;
+     for ii:=0 to Solution.OrigSheetList.size-1 do begin
+         sheet:=Solution.OrigSheetList.data[ii];
+         if (ii = 0) or (sheet.Left < minx) then
+            minx := sheet.Left;
+         if (ii = 0) or (sheet.Top < miny) then
+            miny := sheet.Top;
+         if (ii = 0) or (sheet.Left + sheet.Width > maxx) then
+            maxx := sheet.Left + sheet.Width;
+         if (ii = 0) or (sheet.Top + sheet.Height > maxy) then
+            maxy := sheet.Top + sheet.Height;
      end;
      margin := 0.025*min(width, height);
      CenterStretchKeepAspect(margin, margin, width-margin, height-margin,
@@ -379,11 +379,11 @@ end;
 
 function TTransformation.transform(rectangle: TRectangle):TRectangle;
 begin
-     transform.Init(rectangle.name_,
-                   (rectangle.left_ + offsetX) * scaleX,
-                   (rectangle.top_ + offsetY) * scaleY,
-                   rectangle.width_ * scaleX,
-                   rectangle.height_ * scaleY);
+     transform.Init(rectangle.Name,
+                   Round((rectangle.Left + offsetX) * scaleX),
+                   Round((rectangle.Top + offsetY) * scaleY),
+                   Round(rectangle.Width * scaleX),
+                   Round(rectangle.Height * scaleY));
 end;
 
 end.

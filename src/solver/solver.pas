@@ -1,15 +1,20 @@
+{
+Base class for solvers. Currently just a stub.
+@author(Matyas Jani)
+}
 {$mode objfpc}
 unit solver;
 
 interface
 
-uses rectangle, sortedarray, glist;
+uses rectangle, glist;
 
-type TPieceList = specialize TGList<TBox>;
-     TPlacedList = specialize TGList<TPlacedBox>;
-     TSpaceList = specialize TGList<TSpace>;
+type TPieceList = specialize TGList<TPiece>;
+     TPlacedList = specialize TGList<TPlacedPiece>;
+     TSheetList = specialize TGList<TSheet>;
      TCutList = specialize TGList<TCut>;
 
+{ Base class for solvers. Stub. }
 type TSolver = class
 end;
 

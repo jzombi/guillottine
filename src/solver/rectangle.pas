@@ -1,3 +1,7 @@
+{
+Unit containing base classes for different rectangle types.
+@author(Matyas Jani)
+}
 {$mode objfpc}
 unit rectangle;
 
@@ -5,86 +9,140 @@ interface
 
 uses sysutils;
 
-type TDirection = (vertical, horizontal);
+{ @abstract(Cut direction.) }
+type TDirection = (dirVertical, dirHorizontal);
 
+{ @abstract(Base type for rectangles.) }
 type TRectangle = object
     public
-        left_, top_, width_, height_ : real;
-        name_ : string;
-        area, edge : real;
-        constructor Init(name: string; left, top, width, height: real);
-        function Fit(rect: TRectangle):boolean;
+        { Placement / dimension of rectangle. }
+        Left, Top, Width, Height : integer;
+
+        { Name of the rectangle. }
+        Name : string;
+
+        { Area and edge are calculated at @link(Init). }
+        Area, Edge : integer;
+
+        { Initializes the rectangle. }
+        constructor Init(AName: string; ALeft, ATop, AWidth, AHeight: integer);
+
+        { Checks if the parameter rectangle fits self.
+        @param(rect The other rectangle.)
+        @return(True iff dimensions of rect are <= dimensions of self.)
+        }
+        function Fit(Rect: TRectangle):boolean;
+
         function toString:ansistring;
 end;
 
-
-type TBox = object(TRectangle)
+{ @abstract(Piece to be placed on a @link(TSheet).) }
+type TPiece = object(TRectangle)
     public
-        rotatable_ : boolean;
-        rotated_   : boolean;
-        constructor Init(name: string; width, height : real; rotatable: boolean; rotated: boolean);
-        function Rotate:TBox;
+        { Stores if rectangle can be rotated. }
+        Rotatable : boolean;
+
+        { Stores if rectangle is already rotated. }
+        Rotated   : boolean;
+
+        { Benefit for placing this piece. }
+        Gain : integer;
+
+        { Initialize the piece with parameters. }
+        constructor Init(AName: string; AWidth, AHeight : integer;
+                         AGain: integer; ARotatable: boolean; ARotated: boolean);
+
+        { Rotate the piece. }
+        function Rotate:TPiece;
+
         function toString:ansistring;
 end;
 
-type EBox = class(Exception);
+{ @abstract(Exception class for @link(TPiece).) }
+type EPiece = class(Exception);
 
-
-type TPlacedBox = object(TRectangle)
+{ @abstract(Piece placed on a @link(TSheet).) }
+type TPlacedPiece = object(TRectangle)
     public
-        rotated_ : boolean;
-        constructor Init(name: string; left, top, width, height : real; rotated: boolean);
+        { Store if the piece was placed in rotated orientation. }
+        Rotated : boolean;
+
+        { Benefit for placing this piece. }
+        Gain : integer;
+
+        { Initialize placed piece with parameters. }
+        constructor Init(AName: string; ALeft, ATop, AWidth, AHeight : integer;
+                         AGain: integer; ARotated: boolean);
+
         function toString:ansistring;
 end;
 
 
-
+{ @abstract(Object for storing the parameters of a cut.) }
 type TCut = object(TRectangle)
     public
-        direction_ : TDirection;
-        constructor Init(name: string; left, top, width, height: real; direction: TDirection);
+        { Direction of cut. }
+        Direction : TDirection;
+
+        { Initialize cut with parameters. }
+        constructor Init(AName: string; ALeft, ATop, AWidth, AHeight: integer; ADirection: TDirection);
+
         function toString:ansistring;
 end;
 
 
-
-
-type TSpace = object(TRectangle)
+{ @abstract(Sheet on which @link(TPiece)s are placed.) }
+type TSheet = object(TRectangle)
     public
         function toString:ansistring;
 end;
 
-type ESpace = class(Exception);
+{ @abstract(Exception class for @link(TSheet).) }
+type ESheet = class(Exception);
 
+{ @abstract(Stores the result of placing a piece on a sheet.) }
 type TPlacement = record
-    spaces : array[0..1] of TSpace;
+    sheets : array[0..1] of TSheet;
     nspaces : integer;
     cuts : array[0..1] of TCut;
     ncuts : integer;
-    placedbox : TPlacedBox;
+    PlacedPiece : TPlacedPiece;
 end;
 
-function PutBox(const space: TSpace; const rect: TBox; const firstcut: TDirection; const cutwidth: real):TPlacement;
-function PutBoxOpt(const space: TSpace; const rect: TBox; const edgemax: boolean; const cutwidth: real):TPlacement;
+{ Place a piece on a sheet, by cutting the sheet two times.
+The piece is placed in the top left corner of the sheet.
+@param(sheet the sheet on which the piece is placed)
+@param(piece the piece which should be placed)
+@param(firstcut direction of the first cut)
+@param(cutwidth the width of the desposed material when cutting the sheet)
+@return(placement @link(TPlacement))
+}
+function PutPiece(const sheet: TSheet; const rect: TPiece; const firstcut: TDirection; const cutwidth: integer):TPlacement;
+
+{ Place a piece on a sheet, by cutting the sheet two times.
+Calls @link(PutPiece).
+@param(edgemax if true PutPiece is called with firstcut set to have maximal edges for the remaining sheets.)
+}
+function PutPieceOpt(const sheet: TSheet; const rect: TPiece; const edgemax: boolean; const cutwidth: integer):TPlacement;
 
 
 
 implementation
 
-constructor TRectangle.Init(name: string; left, top, width, height: real);
+constructor TRectangle.Init(AName: string; ALeft, ATop, AWidth, AHeight: integer);
 begin
-    left_ := left;
-    top_ := top;
-    width_ := width;
-    height_ := height;
-    name_ := name;
-    area := width_*height_;
-    edge := 2*(width_ + height_);
+    Left := ALeft;
+    Top := ATop;
+    Width := AWidth;
+    Height := AHeight;
+    Name := AName;
+    Area := Width*Height;
+    Edge := 2*(Width + Height);
 end;
 
-function TRectangle.Fit(rect: TRectangle):boolean;
+function TRectangle.Fit(Rect: TRectangle):boolean;
 begin
-    if (width_ >= rect.width_) and (height_ >= rect.height_) then begin
+    if (Width >= Rect.Width) and (Height >= Rect.Height) then begin
         Fit := true;
     end else begin
         Fit := false;
@@ -93,76 +151,77 @@ end;
 
 function TRectangle.toString:ansistring;
 begin
-    toString := 'TRectangle(''' + name_ + ''', ' + FloatToStr(left_) + ', ' + FloatToStr(top_) + ', ' + FloatToStr(width_) + ', ' + FloatToStr(height_) + ')';
+    toString := 'TRectangle(''' + Name + ''', ' + FloatToStr(Left) + ', ' + FloatToStr(Top) + ', ' + FloatToStr(Width) + ', ' + FloatToStr(Height) + ')';
 end;
 
-constructor TBox.Init(name: string; width, height : real; rotatable: boolean; rotated: boolean);
+constructor TPiece.Init(AName: string; AWidth, AHeight : integer; AGain: integer; ARotatable: boolean; ARotated: boolean);
 begin
-    TRectangle.Init(name, 0, 0, width, height);
-    rotatable_ := rotatable;
-    rotated_ := rotated;
+    TRectangle.Init(AName, 0, 0, AWidth, AHeight);
+    Rotatable := ARotatable;
+    Rotated := ARotated;
 end;
 
-function TBox.Rotate:TBox;
+function TPiece.Rotate:TPiece;
 begin
-    if rotatable_ then begin
-        Rotate.Init(name_, height_, width_, rotatable_, not rotated_);
+    if Rotatable then begin
+        Rotate.Init(Name, Height, Width, Gain, Rotatable, not Rotated);
     end else begin
-        raise EBox.Create('Rotation attempt on non-rotatable box.');
+        raise EPiece.Create('Rotation attempt on non-rotatable box.');
     end;
 end;
 
-function TBox.toString:ansistring;
+function TPiece.toString:ansistring;
 begin
-    toString := 'TBox(''' + name_ + ''', ' + FloatToStr(width_) + ', ' + FloatToStr(height_) + ', ' + BoolToStr(rotatable_, 'true', 'false') +
-                ', ' + BoolToStr(rotated_, 'true', 'false') + ')';
+    toString := 'TPiece(''' + Name + ''', ' + FloatToStr(Width) + ', ' + FloatToStr(Height) + ', ' + BoolToStr(Rotatable, 'true', 'false') +
+                ', ' + BoolToStr(Rotated, 'true', 'false') + ')';
 end;
 
 
-constructor TPlacedBox.Init(name: string; left, top, width, height : real; rotated: boolean);
+constructor TPlacedPiece.Init(AName: string; ALeft, ATop, AWidth, AHeight : integer; AGain: integer; ARotated: boolean);
 begin
-    TRectangle.Init(name, left, top, width, height);
-    rotated_ := rotated;
+    TRectangle.Init(AName, ALeft, ATop, AWidth, AHeight);
+    Rotated := ARotated;
+    Gain := AGain;
 end;
 
-function TPlacedBox.toString:ansistring;
+function TPlacedPiece.toString:ansistring;
 begin
-    toString := 'TPlacedBox(''' + name_ + ''', ' + FloatToStr(left_) + ', ' + FloatToStr(top_) + ', ' +
-                FloatToStr(width_) + ', ' + FloatToStr(height_) +', ' + BoolToStr(rotated_, 'true', 'false') + ')';
+    toString := 'TPlacedPiece(''' + Name + ''', ' + FloatToStr(Left) + ', ' + FloatToStr(Top) + ', ' +
+                FloatToStr(Width) + ', ' + FloatToStr(Height) +', ' + BoolToStr(Rotated, 'true', 'false') + ')';
 end;
 
 
-constructor TCut.Init(name: string; left, top, width, height : real; direction: TDirection);
+constructor TCut.Init(AName: string; ALeft, ATop, AWidth, AHeight : integer; ADirection: TDirection);
 begin
-    TRectangle.Init(name, left, top, width, height);
-    direction_ := direction;
+    TRectangle.Init(AName, ALeft, ATop, AWidth, AHeight);
+    Direction := ADirection;
 end;
 
 function TCut.toString:ansistring;
 var dirname : string;
 begin
-    if direction_ = horizontal then begin
+    if Direction = dirHorizontal then begin
         dirname := 'horizontal';
-    end else if direction_ = vertical then begin
+    end else if Direction = dirVertical then begin
         dirname := 'vertical';
     end;
-    toString := 'TCut(''' + name_ + ''', ' + FloatToStr(left_) + ', ' + FloatToStr(top_) + ', ' +
-                FloatToStr(width_) + ', ' + FloatToStr(height_) + ', ' + dirname + ')';
+    toString := 'TCut(''' + Name + ''', ' + FloatToStr(Left) + ', ' + FloatToStr(Top) + ', ' +
+                FloatToStr(Width) + ', ' + FloatToStr(Height) + ', ' + dirname + ')';
 end;
 
 
-function PutBox(const space: TSpace; const rect: TBox; const firstcut: TDirection; const cutwidth: real):TPlacement;
+function PutPiece(const sheet: TSheet; const rect: TPiece; const firstcut: TDirection; const cutwidth: integer):TPlacement;
 {
         Places rect on self.
         firstcut:
-        horizontal:
+        dirHorizontal:
             +------+--+
             | rect |  |
             +------+--+
             |         |
             +---------+
 
-        vertical:
+        dirVertical:
             +------+--+
             | rect |  |
             +------+  |
@@ -170,61 +229,61 @@ function PutBox(const space: TSpace; const rect: TBox; const firstcut: TDirectio
             +------+--+
 }
 begin
-    if not space.Fit(rect) then raise ESpace.Create('Could not place rectangle, it should be checked with Fit first.');
-    PutBox.placedbox.Init(rect.name_, space.left_, space.top_, rect.width_, rect.height_, rect.rotated_);
-    PutBox.nspaces := 0;
-    PutBox.ncuts := 0;
-    if firstcut = horizontal then begin
-        if rect.height_ < space.height_ then begin
-            PutBox.cuts[PutBox.ncuts].Init('', space.left_, space.top_+rect.height_, space.width_, cutwidth, horizontal);
-            Inc(PutBox.ncuts);
-            if rect.height_ + cutwidth < space.height_ then begin
-                PutBox.spaces[PutBox.nspaces].Init(space.name_, space.left_, space.top_+rect.height_+cutwidth, space.width_, space.height_-rect.height_-cutwidth);
-                Inc(PutBox.nspaces);
+    if not sheet.Fit(rect) then raise ESheet.Create('Could not place rectangle, it should be checked with Fit first.');
+    PutPiece.placedpiece.Init(rect.Name, sheet.Left, sheet.Top, rect.Width, rect.Height, rect.Gain, rect.Rotated);
+    PutPiece.nspaces := 0;
+    PutPiece.ncuts := 0;
+    if firstcut = dirHorizontal then begin
+        if rect.Height < sheet.Height then begin
+            PutPiece.cuts[PutPiece.ncuts].Init('', sheet.Left, sheet.Top+rect.Height, sheet.Width, cutwidth, dirHorizontal);
+            Inc(PutPiece.ncuts);
+            if rect.Height + cutwidth < sheet.Height then begin
+                PutPiece.sheets[PutPiece.nspaces].Init(sheet.Name, sheet.Left, sheet.Top+rect.Height+cutwidth, sheet.Width, sheet.Height-rect.Height-cutwidth);
+                Inc(PutPiece.nspaces);
             end;
         end;
-        if rect.width_ < space.width_ then begin
-            PutBox.cuts[PutBox.ncuts].Init('', space.left_+rect.width_, space.top_, cutwidth, rect.height_, vertical);
-            Inc(PutBox.ncuts);
-            if rect.width_ + cutwidth < space.width_ then begin
-                PutBox.spaces[PutBox.nspaces].Init(space.name_, space.left_+rect.width_+cutwidth, space.top_, space.width_-rect.width_-cutwidth, rect.height_);
-                Inc(PutBox.nspaces);
+        if rect.Width < sheet.Width then begin
+            PutPiece.cuts[PutPiece.ncuts].Init('', sheet.Left+rect.Width, sheet.Top, cutwidth, rect.Height, dirVertical);
+            Inc(PutPiece.ncuts);
+            if rect.Width + cutwidth < sheet.Width then begin
+                PutPiece.sheets[PutPiece.nspaces].Init(sheet.Name, sheet.Left+rect.Width+cutwidth, sheet.Top, sheet.Width-rect.Width-cutwidth, rect.Height);
+                Inc(PutPiece.nspaces);
             end;
         end;
-    end else if firstcut = vertical then begin
-        if rect.width_ < space.width_ then begin
-            PutBox.cuts[PutBox.ncuts].Init('', space.left_+rect.width_, space.top_, cutwidth, space.height_, vertical);
-            Inc(PutBox.ncuts);
-            if rect.width_ + cutwidth < space.width_ then begin
-                PutBox.spaces[PutBox.nspaces].Init(space.name_, space.left_+rect.width_+cutwidth, space.top_, space.width_-rect.width_-cutwidth, space.height_);
-                Inc(PutBox.nspaces);
+    end else if firstcut = dirVertical then begin
+        if rect.Width < sheet.Width then begin
+            PutPiece.cuts[PutPiece.ncuts].Init('', sheet.Left+rect.Width, sheet.Top, cutwidth, sheet.Height, dirVertical);
+            Inc(PutPiece.ncuts);
+            if rect.Width + cutwidth < sheet.Width then begin
+                PutPiece.sheets[PutPiece.nspaces].Init(sheet.Name, sheet.Left+rect.Width+cutwidth, sheet.Top, sheet.Width-rect.Width-cutwidth, sheet.Height);
+                Inc(PutPiece.nspaces);
             end;
         end;
-        if rect.height_ < space.height_ then begin
-            PutBox.cuts[PutBox.ncuts].Init('', space.left_, space.top_+rect.height_, rect.width_, cutwidth, horizontal);
-            Inc(PutBox.ncuts);
-            if rect.height_ + cutwidth < space.height_ then begin
-                PutBox.spaces[PutBox.nspaces].Init(space.name_, space.left_, space.top_+rect.height_+cutwidth, rect.width_, space.height_-rect.height_-cutwidth);
-                Inc(PutBox.nspaces);
+        if rect.Height < sheet.Height then begin
+            PutPiece.cuts[PutPiece.ncuts].Init('', sheet.Left, sheet.Top+rect.Height, rect.Width, cutwidth, dirHorizontal);
+            Inc(PutPiece.ncuts);
+            if rect.Height + cutwidth < sheet.Height then begin
+                PutPiece.sheets[PutPiece.nspaces].Init(sheet.Name, sheet.Left, sheet.Top+rect.Height+cutwidth, rect.Width, sheet.Height-rect.Height-cutwidth);
+                Inc(PutPiece.nspaces);
             end;
         end;
     end;
 end;
 
-function PutBoxOpt(const space: TSpace; const rect: TBox; const edgemax: boolean; const cutwidth: real):TPlacement;
+function PutPieceOpt(const sheet: TSheet; const rect: TPiece; const edgemax: boolean; const cutwidth: integer):TPlacement;
 var horizedgemax : boolean;
 begin
-    horizedgemax := (2*space.width_ - rect.width_ + space.height_) > (2*space.height_ - rect.height_ + space.width_);
+    horizedgemax := (2*sheet.Width - rect.Width + sheet.Height) > (2*sheet.Height - rect.Height + sheet.Width);
     if horizedgemax xor edgemax then begin
-        PutBoxOpt := PutBox(space, rect, vertical, cutwidth);
+        PutPieceOpt := PutPiece(sheet, rect, dirVertical, cutwidth);
     end else begin
-        PutBoxOpt := PutBox(space, rect, horizontal, cutwidth);
+        PutPieceOpt := PutPiece(sheet, rect, dirHorizontal, cutwidth);
     end;
 end;
 
-function TSpace.toString:ansistring;
+function TSheet.toString:ansistring;
 begin
-    toString := 'TSpace(''' + name_ + ''', ' + FloatToStr(left_) + ', ' + FloatToStr(top_) + ', ' + FloatToStr(width_) + ', ' + FloatToStr(height_) + ')';
+    toString := 'TSheet(''' + Name + ''', ' + FloatToStr(Left) + ', ' + FloatToStr(Top) + ', ' + FloatToStr(Width) + ', ' + FloatToStr(Height) + ')';
 end;
 
 

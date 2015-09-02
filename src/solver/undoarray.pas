@@ -1,3 +1,7 @@
+{
+Generic preallocated sorted list with commit/revert/undo actions.
+@author(Matyas Jani)
+}
 {$mode objfpc}
 unit undoarray;
 
@@ -5,6 +9,7 @@ interface
 
 uses sortedarray, stack;
 
+{ @abstract(Generic preallocated sorted list type with undo action.) }
 type generic TUndoArray<T> = object
     private
         type TTSortedArray = specialize TSortedArray<T>;
@@ -16,17 +21,52 @@ type generic TUndoArray<T> = object
         end;
         type TUndoElemStack = specialize TStack<TUndoElem>;
     public
+        { True iff the current revision is committed. }
         committed : boolean;
+
+        { The array containing the current data. }
         current : TTSortedArray;
+
+        { The id of tha current revision (incremental, decreases on undo). }
         revision : integer;
+
+        { Stack to store the actions for undo/revert. }
         undostack : TUndoElemStack;
+
+        { Initialize the list.
+        @param(maxsize Number of elements for the array (@link(current)).)
+        @param(undosize Number of elements for the undostack (@link(undostack)).)
+        }
         constructor Init(maxsize, undosize: integer);
+
+        { Return and remove an element.
+        @param(index Index of the element to return (0 based).)
+        }
         function Pop(index: integer):T;
+
+        { Insert element by keeping the sort order.
+        @param(elem Element to insert.)
+        }
         procedure Insert(elem: T);
+
+        { Append element to the end of the list, regardless of the sort order.
+        @param(elem Element to insert.)
+        }
         procedure Append(elem: T);
+
+        { Increase the revision number, and set @link(committed). }
         procedure Commit;
+
+        { Undo the actions of the last committed revision.
+        @return(True on success (if @link(committed) was true).)
+        }
         function Undo:boolean;
+
+        { Undo the actions of the current, uncommitted revision.
+        @return(True on success (if @link(committed) was false))
+        }
         function Revert:boolean;
+
         function toString:ansistring;
 end;
 

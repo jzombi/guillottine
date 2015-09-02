@@ -13,13 +13,13 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    SetupButton: TButton;
+    SolverButton: TButton;
+    QuitButton: TButton;
     Image1: TImage;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure SetupButtonClick(Sender: TObject);
+    procedure SolverButtonClick(Sender: TObject);
+    procedure QuitButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -36,17 +36,17 @@ implementation
 { TMainForm }
 
 
-procedure TMainForm.Button1Click(Sender: TObject);
+procedure TMainForm.SetupButtonClick(Sender: TObject);
 begin
     SetupForm.Visible := not SetupForm.Visible;
 end;
 
-procedure TMainForm.Button2Click(Sender: TObject);
+procedure TMainForm.SolverButtonClick(Sender: TObject);
 begin
      SolutionForm.Visible := not SolutionForm.Visible;
 end;
 
-procedure TMainForm.Button3Click(Sender: TObject);
+procedure TMainForm.QuitButtonClick(Sender: TObject);
 begin
      Close;
 end;

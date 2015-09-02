@@ -1,7 +1,7 @@
 object SolutionForm: TSolutionForm
-  Left = 443
+  Left = 379
   Height = 600
-  Top = 263
+  Top = 132
   Width = 800
   Caption = 'Solution'
   ClientHeight = 600
@@ -13,14 +13,14 @@ object SolutionForm: TSolutionForm
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '1.5'
-  object Button1: TButton
+  object SolverStartStopButton: TButton
     Left = 8
     Height = 25
     Hint = 'Start searching for a solution, or stop'#10'the current search.'
     Top = 24
     Width = 75
     Caption = 'Start'
-    OnClick = Button1Click
+    OnClick = SolverStartStopButtonClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
@@ -43,14 +43,14 @@ object SolutionForm: TSolutionForm
     ParentShowHint = False
     ShowHint = True
   end
-  object Button2: TButton
+  object SaveImageButton: TButton
     Left = 709
     Height = 25
     Hint = 'Save the presented solution to an image file,'
     Top = 24
     Width = 75
     Caption = 'Save'
-    OnClick = Button2Click
+    OnClick = SaveImageButtonClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1

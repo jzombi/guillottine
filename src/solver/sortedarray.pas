@@ -1,3 +1,8 @@
+{
+Generic preallocated array supporting sorted inserts.
+@author(Matyas Jani)
+}
+
 {$mode objfpc}
 unit sortedarray;
 
@@ -5,18 +10,46 @@ interface
 
 uses sysutils;
 
+{ @abstract(Exception class for @link(TSortedArray).) }
 type ESortedArray = class(Exception);
 
+{ @abstract(Generic preallocated array supporting sorted inserts.) }
 type generic TSortedArray<T> = object
     public
+        { Current number of elements in the array. }
         size : integer;
+
+        { Array containing the elements. }
         data : array of T;
+
+        { Allocate @link(data).
+        @param(max Maximal number of elements in the array (allocation size for @link(data)).)
+        }
         constructor Init(max: integer);
+
+        { Find the insert index of the element to keep sort order. }
         function BisectLeft(const elem: T):integer;
+
+        { Append element to the end of the array, without keeping sort order.
+        @raises(ESortedArray on overflow.)
+        }
         procedure Append(elem: T);
+
+        { Insert element with keeping sort order.
+        @raises(ESortedArray on overflow.)
+        }
         procedure Insert(elem: T);
+
+        { Insert element at position, without keeping sort order.
+        @raises(ESortedArray on overflow or invalid index.)
+        }
         procedure Insert(elem: T; index: integer);
+
+        { Delete element
+        @raises(ESortedArray on invalid index.)
+        }
         procedure Delete(index: integer);
+
         function toString:ansistring;
 end;
 

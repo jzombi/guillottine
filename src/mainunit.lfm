@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 170
+  Left = 367
   Height = 200
-  Top = 228
+  Top = 238
   Width = 358
   Caption = 'Simple Guillottine Solver'
   ClientHeight = 200
@@ -12,38 +12,38 @@ object MainForm: TMainForm
   Constraints.MinWidth = 358
   LCLVersion = '1.5'
   Visible = True
-  object Button1: TButton
+  object SetupButton: TButton
     Left = 24
     Height = 25
     Hint = 'Open the setup window to set the sheets,'#10'pieces, and the width of the cuts.'
     Top = 24
     Width = 75
     Caption = 'Setup'
-    OnClick = Button1Click
+    OnClick = SetupButtonClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
   end
-  object Button2: TButton
+  object SolverButton: TButton
     Left = 24
     Height = 25
     Hint = 'Open the solver window where'#10'the solver can be started on the'#10'current setup.'
     Top = 72
     Width = 75
     Caption = 'Solver'
-    OnClick = Button2Click
+    OnClick = SolverButtonClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
   end
-  object Button3: TButton
+  object QuitButton: TButton
     Left = 24
     Height = 25
     Hint = 'Quit the application.'
     Top = 152
     Width = 75
     Caption = 'Quit'
-    OnClick = Button3Click
+    OnClick = QuitButtonClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2

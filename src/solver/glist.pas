@@ -1,3 +1,7 @@
+{
+Generic list with incremental allocation and array backend.
+@author(Matyas Jani)
+}
 {$mode objfpc}
 unit glist;
 
@@ -5,18 +9,34 @@ interface
 
 uses sysutils;
 
+{ Increment size for reallocation. }
 const increment = 10;
 
+{ @abstract(Exception class for @link(TGList).) }
 type EGList = class(Exception);
 
+{ @abstract(Generic list based on array and incremental allocation.) }
 type generic TGList<T> = object
   public
+    { Array storing the elements. }
     data : array of T;
+
+    { Number of elements currently in the list. }
     size : integer;
+
+    { Insert element at a given position (0 based). }
     procedure Insert(elem: T; index: integer);
+
+    { Append element to the end of list. }
     procedure Append(elem: T);
+
+    { Remove and return element from the given position (0 based). }
     function Pop(index: integer):T;
+
+    { Allocate list with given initial size. }
     constructor Init(initsize: integer);
+
+    { Allocate list with default @link(increment) size. }
     constructor Init;
 end;
 
