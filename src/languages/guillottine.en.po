@@ -1,107 +1,116 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: mainunit.rssavedto
-msgctxt "mainunit.rssavedto"
 msgid "Saved to: "
-msgstr ""
+msgstr "Saved to: "
 
 #: solutionunit.rsstart
 msgctxt "solutionunit.rsstart"
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: solutionunit.rsstep
 msgid "Step"
-msgstr ""
+msgstr "Step"
 
 #: solutionunit.rsstop
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: tmainform.caption
 msgid "Simple Guillottine Solver"
-msgstr ""
+msgstr "Simple Guillottine Solver"
 
 #: tmainform.languagecombobox.text
 msgid "en"
-msgstr ""
+msgstr "en"
 
 #: tmainform.languagelabel.caption
-msgctxt "TMAINFORM.LANGUAGELABEL.CAPTION"
+msgctxt "tmainform.languagelabel.caption"
 msgid "Language:"
-msgstr ""
+msgstr "Language:"
 
 #: tmainform.msglabel.caption
 msgid "Messages"
-msgstr ""
+msgstr "Messages"
 
 #: tmainform.quitbutton.caption
 msgid "Quit"
-msgstr ""
+msgstr "Quit"
 
 #: tmainform.setupbutton.caption
 msgctxt "tmainform.setupbutton.caption"
 msgid "Setup"
-msgstr ""
+msgstr "Setup"
 
 #: tmainform.solverbutton.caption
 msgid "Solver"
-msgstr ""
+msgstr "Solver"
 
 #: tsetupform.addpiecebutton.caption
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: tsetupform.caption
 msgctxt "TSETUPFORM.CAPTION"
 msgid "Setup"
-msgstr ""
+msgstr "Setup"
 
 #: tsetupform.cutwidthedit.text
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: tsetupform.cutwidthlabel.caption
 msgid "Cut width:"
-msgstr ""
+msgstr "Cut width:"
 
 #: tsetupform.loadpiecelistbutton.caption
 msgid "Load"
-msgstr ""
+msgstr "Load"
 
 #: tsetupform.pieceslabel.caption
 msgid "Pieces"
-msgstr ""
+msgstr "Pieces"
 
 #: tsetupform.removepiecebutton.caption
 msgid "Remove"
-msgstr ""
+msgstr "Remove"
 
 #: tsetupform.savepiecelistbutton.caption
 msgctxt "tsetupform.savepiecelistbutton.caption"
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: tsolutionform.caption
 msgid "Solution"
-msgstr ""
+msgstr "Solution"
 
 #: tsolutionform.label1.caption
 msgid "Step:"
-msgstr ""
+msgstr "Step:"
 
 #: tsolutionform.savedialog1.title
 msgid "Save solution image as..."
-msgstr ""
+msgstr "Save solution image as..."
 
 #: tsolutionform.saveimagebutton.caption
 msgctxt "TSOLUTIONFORM.SAVEIMAGEBUTTON.CAPTION"
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: tsolutionform.solverstartstopbutton.caption
 msgctxt "tsolutionform.solverstartstopbutton.caption"
 msgid "Start"
-msgstr ""
+msgstr "Start"
 

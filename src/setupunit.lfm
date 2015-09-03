@@ -1,7 +1,7 @@
 object SetupForm: TSetupForm
-  Left = 475
+  Left = 648
   Height = 425
-  Top = 198
+  Top = 212
   Width = 568
   Caption = 'Setup'
   ClientHeight = 425
@@ -14,7 +14,6 @@ object SetupForm: TSetupForm
   object PiecesGrid: TStringGrid
     Left = 8
     Height = 224
-    Hint = 'The current pieces and spaces (sheets):'#10'  Type: space / piece'#10'  Name: the name of the piece'#10'  X: X coordinate of the space'#10'  Y: Y coordinate of the space'#10'  Width: width of the space / piece'#10'  Height: height of the space / piece'#10'  Rotatable: true/false/'#10'     true if the piece can be rotated 90° before placement'#10'  Count: inserts this many pieces/spaces with the same parameters'
     Top = 32
     Width = 552
     ColCount = 8
@@ -64,7 +63,6 @@ object SetupForm: TSetupForm
   object AddPieceButton: TButton
     Left = 8
     Height = 25
-    Hint = 'Add an empty row.'
     Top = 264
     Width = 75
     Caption = 'Add'
@@ -76,7 +74,6 @@ object SetupForm: TSetupForm
   object RemovePieceButton: TButton
     Left = 106
     Height = 25
-    Hint = 'Remove current row.'
     Top = 264
     Width = 75
     Caption = 'Remove'
@@ -86,10 +83,9 @@ object SetupForm: TSetupForm
     TabOrder = 2
   end
   object CutWidthEdit: TEdit
-    Left = 88
+    Left = 40
     Height = 22
-    Hint = 'Width of each cuts in both directions.'
-    Top = 336
+    Top = 368
     Width = 80
     OnEditingDone = CutWidthEditEditingDone
     ParentShowHint = False
@@ -108,7 +104,6 @@ object SetupForm: TSetupForm
   object SavePieceListButton: TButton
     Left = 205
     Height = 25
-    Hint = 'Save list to csv file.'
     Top = 264
     Width = 75
     Caption = 'Save'
@@ -120,7 +115,6 @@ object SetupForm: TSetupForm
   object LoadPieceListButton: TButton
     Left = 307
     Height = 25
-    Hint = 'Load list from csv file.'
     Top = 264
     Width = 75
     Caption = 'Load'
@@ -130,7 +124,7 @@ object SetupForm: TSetupForm
     TabOrder = 5
   end
   object PiecesLabel: TLabel
-    Left = 9
+    Left = 8
     Height = 14
     Top = 8
     Width = 41

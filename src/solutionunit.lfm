@@ -1,7 +1,7 @@
 object SolutionForm: TSolutionForm
-  Left = 379
+  Left = 434
   Height = 600
-  Top = 132
+  Top = 171
   Width = 800
   Caption = 'Solution'
   ClientHeight = 600
@@ -16,7 +16,6 @@ object SolutionForm: TSolutionForm
   object SolverStartStopButton: TButton
     Left = 8
     Height = 25
-    Hint = 'Start searching for a solution, or stop'#10'the current search.'
     Top = 24
     Width = 75
     Caption = 'Start'
@@ -35,7 +34,6 @@ object SolutionForm: TSolutionForm
   object Label1: TLabel
     Left = 160
     Height = 14
-    Hint = 'Number of steps done for the current search.'
     Top = 35
     Width = 33
     Caption = 'Step:'
@@ -46,7 +44,6 @@ object SolutionForm: TSolutionForm
   object SaveImageButton: TButton
     Left = 709
     Height = 25
-    Hint = 'Save the presented solution to an image file,'
     Top = 24
     Width = 75
     Caption = 'Save'
@@ -58,7 +55,7 @@ object SolutionForm: TSolutionForm
   object Timer1: TTimer
     OnTimer = Timer1Timer
     left = 280
-    top = 18
+    top = 24
   end
   object SaveDialog1: TSaveDialog
     Title = 'Save solution image as...'

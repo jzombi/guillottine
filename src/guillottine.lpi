@@ -9,10 +9,15 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
+      <Resources Count="2">
+        <Resource_0 FileName="languages/guillottine.en.po" Type="RCDATA" ResourceName="GUILLOTTINE.EN"/>
+        <Resource_1 FileName="languages/guillottine.hu.po" Type="RCDATA" ResourceName="GUILLOTTINE.HU"/>
+      </Resources>
     </General>
     <LazDoc Paths="doc"/>
     <i18n>
-      <EnableI18N LFM="False"/>
+      <EnableI18N Value="True"/>
+      <OutDir Value="languages"/>
     </i18n>
     <VersionInfo>
       <StringTable ProductVersion=""/>
@@ -55,11 +60,15 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-FcUTF8"/>
+          </Other>
         </CompilerOptions>
       </Item2>
       <Item3 Name="Release">
-        <MacroValues Count="1">
+        <MacroValues Count="2">
           <Macro1 Name="LCLWidgetType" Value="qt"/>
+          <Macro3 Name="LCLWidgetType" Value="gtk2"/>
         </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
@@ -88,10 +97,15 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CustomOptions Value="-FcUTF8"/>
+          </Other>
         </CompilerOptions>
       </Item3>
-      <SharedMatrixOptions Count="1">
+      <SharedMatrixOptions Count="3">
         <Item1 ID="985163013469" Modes="Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="qt"/>
+        <Item2 ID="466630083439" Modes="Release,Debug" Value="-dEnableUTF8RTL"/>
+        <Item3 ID="934220917390" Modes="Release" Type="IDEMacro" MacroName="LCLWidgetType" Value="gtk2"/>
       </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>

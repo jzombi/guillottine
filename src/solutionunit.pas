@@ -77,6 +77,11 @@ var SolverThread: TSolverThread;
 
 {$R *.lfm}
 
+resourcestring
+  rsStep = 'Step';
+  rsStart = 'Start';
+  rsStop = 'Stop';
+
 { TSolverThread }
 
 constructor TSolverThread.Create(ASpaceList: TSheetList; APieceList: TPieceList; ACutWidth: integer);
@@ -199,7 +204,7 @@ begin
          SolverThread.stop;
          SolverThread.WaitFor;
          FreeAndNil(SolverThread);
-         SolverStartStopButton.Caption:='Start';
+         SolverStartStopButton.Caption:=rsStart;
      end else begin
          piecelist := GetPieceList(SetupForm.PiecesGrid);
          spacelist := GetSpaceList(SetupForm.PiecesGrid);
@@ -207,8 +212,8 @@ begin
          SolverThread := TSolverThread.Create(spacelist, piecelist, cutwidth);
          SolverThread.OnTerminate := @self.SolverTerminated;
          SolverThread.Start;
-         Label1.Caption := 'Step: 0';
-         SolverStartStopButton.Caption:='Stop';
+         Label1.Caption := rsStep + ': 0';
+         SolverStartStopButton.Caption := rsStop;
      end;
 end;
 
@@ -238,7 +243,7 @@ end;
 
 procedure TSolutionForm.SolverTerminated(Sender: TObject);
 begin
-    SolverStartStopButton.Caption:='Start';
+    SolverStartStopButton.Caption:=rsStart;
     ShowSolution(SolverThread.Solution);
     UpdateStep;
 end;
@@ -251,9 +256,9 @@ end;
 procedure TSolutionForm.UpdateStep;
 begin
     if Assigned(SolverThread) and Assigned(SolverThread.Solver) then begin
-        Label1.Caption := 'Step: ' + IntToStr(SolverThread.Solver.Step);
+        Label1.Caption := rsStep + ': ' + IntToStr(SolverThread.Solver.Step);
     end else if Assigned(SolverThread) then begin
-        Label1.Caption := 'Step: ' + IntToStr(SolverThread.Solution.Step);
+        Label1.Caption := rsStep + ': ' + IntToStr(SolverThread.Solution.Step);
     end;
 end;
 
