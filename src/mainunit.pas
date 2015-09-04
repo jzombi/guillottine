@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, LResources, Translations, LCLTranslator, INIFiles,
+  ExtCtrls,{$ifdef WINDOWS} windows,{$endif} LResources, Translations, LCLTranslator, INIFiles,
   SetupUnit, SolutionUnit;
 
 type

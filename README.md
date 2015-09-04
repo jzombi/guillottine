@@ -2,7 +2,7 @@
 
 Guillottine is a simple [guillottine problem](https://en.wikipedia.org/wiki/Guillotine_problem) solver.
 
-Written in Object Pascal language (objfpc), to compile the source code FPC (min. 3.0.0RC) and Lazarus are required.
+Written in Object Pascal language (objfpc), to compile the source code FPC (min. 3.0.0RC) and Lazarus (svn) are required.
 
 ## Features
 
@@ -18,7 +18,6 @@ Written in Object Pascal language (objfpc), to compile the source code FPC (min.
 
 ## TODO
 
-* Source code cleanup, dev-doc
 * Implement better solver algorithms? ([article](http://www.hindawi.com/journals/aor/2009/732010/))
 * Support for more solvers
   * E.g. solvers with multicore CPU support, etc.

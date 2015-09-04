@@ -52,10 +52,8 @@
       <Unit5>
         <Filename Value="solver/sortedarray.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="82"/>
-        <CursorPos X="69" Y="94"/>
+        <CursorPos X="52" Y="92"/>
         <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -89,6 +87,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainUnit"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="7" Y="83"/>
         <UsageCount Value="59"/>
